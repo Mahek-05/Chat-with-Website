@@ -16,25 +16,29 @@ if "chat_history" not in st.session_state:
 # sidebar
 with st.sidebar:
     st.header("Settings")
-    websit_url = st.text_input("Enter the URL of the website you want to chat with")
+    website_url = st.text_input("Enter the URL of the website you want to chat with")
 
-# user input  
-user_query = st.chat_input("Type your message here...")
 
-if user_query is not None and user_query != "":
-    
-    response = get_response(user_query)
-    st.session_state.chat_history.append(HumanMessage(content=user_query))
-    st.session_state.chat_history.append(AIMessage(content=response))
+if website_url is None or website_url == "":
+    st.info("Please enter a website url")
+else:        
+    # user input  
+    user_query = st.chat_input("Type your message here...")
 
-    # with st.sidebar:
-    #     st.write(st.session_state.chat_history)
+    if user_query is not None and user_query != "":
         
-# conversation
-for message in st.session_state.chat_history:
-    if isinstance(message, AIMessage):
-        with st.chat_message("AI"):
-            st.write(message.content)
-    elif isinstance(message, HumanMessage):
-        with st.chat_message("Human"):
-            st.write(message.content)
+        response = get_response(user_query)
+        st.session_state.chat_history.append(HumanMessage(content=user_query))
+        st.session_state.chat_history.append(AIMessage(content=response))
+
+        # with st.sidebar:
+        #     st.write(st.session_state.chat_history)
+            
+    # conversation
+    for message in st.session_state.chat_history:
+        if isinstance(message, AIMessage):
+            with st.chat_message("AI"):
+                st.write(message.content)
+        elif isinstance(message, HumanMessage):
+            with st.chat_message("Human"):
+                st.write(message.content)
