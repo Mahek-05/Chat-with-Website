@@ -42,6 +42,14 @@ Langchain is a framework designed to simplify the development of applications th
     pip install -r requirements.txt
     ```
 
+## Obtaining an OpenAI API Key
+To use this project, you'll need an OpenAI API key. Follow these steps:
+
+1. Go to the OpenAI API Keys page.
+2. Sign up or log in to your OpenAI account.
+3. Click on "Create new secret key" to generate an API key.
+4. Copy the API key and store it securely.
+
 Create your own .env file with the following variables:
 
 ```bash
